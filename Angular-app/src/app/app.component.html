@@ -1,0 +1,38 @@
+<button (click)="setvisible()">
+    {{visible? 'Ocultar' : 'Mostrar'}}
+</button> 
+<div class="table-main" *ngIf="visible; else NotEnable"> 
+<div>    
+    <h2>{{title}} tengo {{age}} años</h2>
+    <div>Total: {{counter}}</div>
+</div>
+<div> 
+<table *ngIf="(users != undefined && users.length > 0) else isEmpty">
+    <thead>
+        <tr> 
+            <th>Id</th>
+            <th>name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users; index as i">
+            <td>{{i+1}}</td>
+            <td>{{user}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #isEmpty>
+    <div>
+        No hay usuarios en el array
+    </div>
+</ng-template>
+ </div>
+</div>
+<ng-template #NotEnable>
+    <div class="Noenable">
+        No se puede ver el contenido
+    </div>
+</ng-template>
+
+<app-counter [title]="subTitle" (counterEmmit)="setCounter($event)"></app-counter>
